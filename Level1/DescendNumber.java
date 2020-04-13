@@ -20,7 +20,6 @@ public class DescendNumber
         long answer = 0;
 
         char[] tmp = String.valueOf(n).toCharArray();
-
         PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
         for(char s : tmp)
         {
