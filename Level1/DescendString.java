@@ -17,50 +17,28 @@ public class DescendString
 
     public static String solution(String s)
     {
+        if(s.length() < 1)
+        {
+            return null;
+        }
+
         String answer ="";
-
-        Queue<String> queue = new LinkedList<>();
-        Stack<String> stack = new Stack<>();
-
-        for(int i=0; i<s.length(); i++)
-        {
-            stack.push(String.valueOf(s.charAt(i)));
-        }
-
-        while(!stack.isEmpty())
-        {
-            queue.offer(stack.pop());
-        }
-
-        String tmp = "";
-
         
-
-        while(true)
+        for(int i=0; i<c.length; i++)
         {
-            while(!queue.isEmpty())
+            for(int j=i+1; j<c.length; j++)
             {
-                tmp = queue.poll();
-                System.out.print(tmp);
-                if((int)tmp.charAt(0)>= 97 && (int)tmp.charAt(0) <=122)
+                if(c[i] < c[j])
                 {
-                    answer+=tmp;
-                } 
+                    char ch = c[i];
+                    c[i] = c[j];
+                    c[j] = ch;
+                }
+                
             }
-
-            while(!queue.isEmpty())
-            {
-                answer+=queue.poll();
-            }
-            break;
-        }
-
-       
-        System.out.println();
-       
-       
-
-        return answer;
+        }     
+      
+        return String.valueOf(c);
     }
 
 }
