@@ -11,19 +11,23 @@ public class JudgeIntegerSquareRoot
 {
     public static void main(String[] args) 
     {
-       long n = 3;
-       //int n 3;
+       //long n = 3;
+       int n = 121;
 
        System.out.println(solution(n));
     }
 
     public static long solution(long n)
     {
+    
+        int sqrt = (int)Math.sqrt(n);
+        double sqrtNumber = Math.sqrt(n);
+        
+        if(sqrtNumber == sqrt )return (long)Math.pow(sqrtNumber+1, 2);
+        else return -1;
+        
 
-        long answer = 0;
-        System.out.println(Math.sqrt(n));
-
-        return answer;
+     
     }
 
 }
