@@ -20,11 +20,11 @@ public class PhysicalTranningClothing
 
     public static int solution(int n, int []lost, int []reverse)
     {
-
+ 
         if(reverse.length <= 1)
         {
             return 1;
-        }
+        } 
 
         int answer = reverse.length;
 
@@ -41,6 +41,8 @@ public class PhysicalTranningClothing
                 }
             }
         }
+
+
 
 
 
