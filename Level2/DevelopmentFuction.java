@@ -20,10 +20,14 @@ class InnerProgress
     /**
      * @return the progress
      */
-    public int getProgress() {
+    public int getProgress()
+    {
         return progress;
     }
 
+    /**
+     * @return the isCompleted
+     */
     public boolean isCompleted()
     {
         if(progress >= 100)
@@ -34,7 +38,7 @@ class InnerProgress
 
     public void process()
     {
-        if(progress <= 100)
+        if(progress < 100)
         {
             progress+=speed;
             day++;
@@ -44,23 +48,28 @@ class InnerProgress
     /**
      * @return the day
      */
-    public int getDay() {
+    public int getDay() 
+    {
         return day;
     }
 
     /**
      * @return the idx
      */
-    public int getIdx() {
+    public int getIdx() 
+    {
         return idx;
     }
 }
 
-public class DevelopmentFuction {
+public class DevelopmentFuction 
+{
 
-    public static void main(String[] args) {
-        int []progresses = {93,30,55};
-        int []speeds = {1,30,5};
+    public static void main(String[] args)
+     {
+        int []progresses = {93,30,55}; int []speeds = {1,30,5};
+        //int []progresses = {40, 93, 30, 55, 60, 65}; int []speeds = {60, 1, 30, 5 , 10, 7};
+        //int []progresses = {93, 30, 55, 60, 40, 65}; int []speeds = {1, 30, 5 , 10, 60, 7};
 
         for(int i : solution(progresses, speeds))
         {
@@ -83,21 +92,38 @@ public class DevelopmentFuction {
 
         InnerProgress progress = null;
         int currentPosition = 0;
-
+        int count = 0;
         while(!queue.isEmpty())
         {
+            if(count >= progresses.length) {
+                System.out.println();
+                count = 0;
+                //break;
+            }
+            
             progress = queue.poll();
-            if(progress.getIdx() != currentPosition)
-            {
-                
+
+            if(!progress.isCompleted()) {
+                //완료안될때
                 progress.process();
                 queue.offer(progress);
+                count++;
+                System.out.print(progress.getProgress()+"["+progress.getIdx()+"]" +" ");
+            } else if(progress.isCompleted() && progress.getIdx() != currentPosition) {
+                //완료되었지만 이전 task가 미완료
+                //progress.process();
+                queue.offer(progress);
+                System.out.print(progress.getProgress()+"["+progress.getIdx()+"]" +" ");
+                count++;
 
-            } else if(progress.getIdx() == currentPosition && progress.isCompleted()) {
-                System.out.println(progress.getProgress());
+            } else if(progress.isCompleted() && progress.getIdx() == currentPosition) {
+                System.out.print(progress.getIdx()+"완료 ");
+                //순서대로 완료되었을때
                 currentPosition++;
-                continue;
+                count++;
+
             }
+
         }
        
 
